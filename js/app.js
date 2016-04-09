@@ -85,18 +85,33 @@ function counterClick() {
   totalClick++;
 
   if (totalClick === 15) {
-    resultButton.removeAttribute('hidden');
+    resultButton.removeAttribute('hidden'); // remove hidden attribute of resultButton if 15 clicks
   }
 
   console.log(totalClick);
+  document.getElementById('counterText').innerHTML = "You can view the results after 15 votes. Vote Counter: " + totalClick + " of 15";
   display();
 }
 
-funtion displayCounter() {
-  totalClick
+
+// Button for showResults
+var resultButton = document.getElementById('showResults'); // reference to showResults
+resultButton.addEventListener('click', resultDisplay); // event listener, click and run resultDisplay function
+
+
+// resultDisplay function
+function resultDisplay() {
+  var results = document.getElementById('displayResults'); // reference to Id
+  displayResults.removeAttribute('hidden'); // remove hidden
+  console.log('display test');
+
+  var ul = document.createElement('ul'); // create ul list
+  document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
+
+  var li = document.createElement('li'); // create li element
+  document.getElementById('displayResults').appendChild(li); // add li to ul
 }
 
-var resultButton = document.getElementById('showResults');
 
 // imgOne.addEventListener('click', click1);
 // imgTwo.addEventListener('click', click2);
