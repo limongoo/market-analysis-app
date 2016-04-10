@@ -10,8 +10,10 @@ var productImage = [];
 // Object Constructor
 var product = function(productName, imgPath) {
   this.productName = productName;
+  this.label = productName;
   this.imgPath = imgPath;
   this.counter = 0;
+  this.y = 0;
   productImage.push(this);
 }
 
@@ -79,9 +81,9 @@ var img3 = 0;
 
 // counterClick function
 function counterClick() {
-  productImage[img1].counter++;
-  productImage[img2].counter++;
-  productImage[img3].counter++;
+  productImage[img1].y++;
+  productImage[img2].y++;
+  productImage[img3].y++;
   totalClick++;
 
   if (totalClick === 15) { // if 15 clicks, do remove attribute
@@ -93,34 +95,6 @@ function counterClick() {
   console.log(totalClick);
   document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15";
   display(); // calls display function again on click
-}
-
-
-// Button for showResults
-var resultButton = document.getElementById('showResults'); // reference to showResults
-resultButton.addEventListener('click', resultDisplay); // event listener, click and run resultDisplay function
-
-
-// resultDisplay function
-function resultDisplay() {
-  var results = document.getElementById('displayResults'); // reference to Id
-  displayResults.removeAttribute('hidden'); // remove hidden
-  console.log('display test');
-
-  var ul = document.createElement('ul'); // create ul list
-  document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
-
-  for (i=0; i < productImage.length; i++) {
-    var li = document.createElement('li'); // create li element
-    // var showName = productImage[img1].productName;
-    // var showNameCounter = productImage[img1].counter;
-    var showName = productImage[i].productName;
-    var showNameCounter = productImage[i].counter;
-    var productTotal = showName + " = " +showNameCounter;
-    productTotal = document.createTextNode(productTotal);
-    li.appendChild(productTotal);
-    document.getElementById('displayResults').appendChild(li); // add li to ul
-  }
 }
 
 
@@ -150,6 +124,58 @@ function resultDisplay() {
 //   display();
 // }
 
+
+// Button for showResults
+var resultButton = document.getElementById('showResults'); // reference to showResults
+resultButton.addEventListener('click', resultDisplay); // event listener, click and run resultDisplay function
+
+
+// resultDisplay function
+function resultDisplay() {
+  var results = document.getElementById('displayResults'); // reference to Id
+  displayResults.removeAttribute('hidden'); // remove hidden
+  console.log('display test');
+
+  var ul = document.createElement('ul'); // create ul list
+  document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
+
+  for (i=0; i < productImage.length; i++) {
+    var li = document.createElement('li'); // create li element
+    // var showName = productImage[img1].productName;
+    // var showNameCounter = productImage[img1].counter;
+    var showName = productImage[i].productName;
+    var showNameCounter = productImage[i].y;
+    var productTotal = showName + " = " +showNameCounter;
+    productTotal = document.createTextNode(productTotal);
+    li.appendChild(productTotal);
+    document.getElementById('displayResults').appendChild(li); // add li to ul
+  }
+}
+
+
+// Chart Stuff
+var chart = null;
+window.onload = function () {
+
+  chart = new CanvasJS.Chart("chartContainer", {
+
+    title: {text: "Clicks Per Photo"},
+    data: [//array of dataSeries
+      /*** Change type "column" to "bar", "area", "line" or "pie"***/
+            {
+             type: "column",
+             dataPoints: productImage
+            }
+          ]
+   });
+
+  chart.render();
+}
+
+function changeSomething() {
+  productImage[i].y++;
+  chart.render();
+}
 
 
 
