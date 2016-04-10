@@ -10,3 +10,7 @@
 .hidden {
   visibility: hidden;
 }
+
+#counterText {
+  color: #1EAEDB;
+}
