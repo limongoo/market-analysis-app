@@ -1,5 +1,6 @@
 console.log("start");
 
+
 // Global variables
 var imgOne = document.getElementById('img1');
 var imgTwo = document.getElementById('img2');
@@ -18,7 +19,7 @@ var product = function(productName, imgPath) {
 }
 
 
-// Images
+// Image Objects
 var bag = new product ('bag','img/bag.jpg');
 var banana = new product ('banana','img/banana.jpg');
 var boots = new product ('boots','img/boots.jpg');
@@ -45,22 +46,21 @@ function getRandom() {
 function display () {
   img1 = getRandom();
   imgOne.src = productImage[img1].imgPath;
-  imgOne.dataset.index = img1;
-
+  imgOne.dataset.index = img1; // putting img1 into dataset.index
 
   img2 = getRandom();
     while (img2 === img1) {
       img2 = getRandom();
     };
   imgTwo.src = productImage[img2].imgPath;
-  imgTwo.dataset.index = img2;
+  imgTwo.dataset.index = img2; // putting img2 into dataset.index
 
   img3 = getRandom();
     while (img3 === img2 || img3 === img1) {
       img3 = getRandom();
     }
   imgThree.src = productImage[img3].imgPath;
-  imgThree.dataset.index = img3;
+  imgThree.dataset.index = img3; // putting img3 into dataset.index
 
   console.log(productImage[img1]);
   console.log(productImage[img2]);
@@ -90,71 +90,21 @@ function counterClick() {
 
   totalClick++;
 
-  if (totalClick === 15) { // if 15 clicks, do remove attribute
+  if (totalClick === 15) { // if 15 clicks, change class attribute
     resultButton.setAttribute('class', 'button-primary'); // remove hidden attribute of resultButton if 15 clicks
   }
-  // console.log(productImage[img1].productName);
-  // console.log(productImage[img2].productName);
-  // console.log(productImage[img3].productName);
+  console.log(productImage[img1].productName);
+  console.log(productImage[img2].productName);
+  console.log(productImage[img3].productName);
   console.log(totalClick);
-  document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15";
+  document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15"; // Show # of 15 text
   display(); // calls display function again on click
 }
 
 
-// imgOne.addEventListener('click', click1);
-// imgTwo.addEventListener('click', click2);
-// imgThree.addEventListener('click', click3);
-
-// function click1() {
-//   productImage[img1].counter++;
-//   totalClick++;
-//   console.log(productImage[img1].productName);
-//   console.log(totalClick);
-//   display();
-// }
-// function click2() {
-//   productImage[img2].counter++;
-//   totalClick++;
-//   console.log(productImage[img2].productName);
-//   console.log(totalClick);
-//   display();
-// }
-// function click3() {
-//   productImage[img3].counter++;
-//   totalClick++;
-//   console.log(productImage[img3].productName);
-//   console.log(totalClick);
-//   display();
-// }
-
-
-// Button for showResults
+// Button for showResults and event listener
 var resultButton = document.getElementById('showResults'); // reference to showResults
 resultButton.addEventListener('click', changeSomething); // event listener, click and run resultDisplay function
-
-
-// resultDisplay function
-// function resultDisplay() {
-//   var results = document.getElementById('displayResults'); // reference to Id
-//   displayResults.removeAttribute('hidden'); // remove hidden
-//   console.log('display test');
-//
-//   var ul = document.createElement('ul'); // create ul list
-//   document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
-//
-//   for (i=0; i < productImage.length; i++) {
-//     var li = document.createElement('li'); // create li element
-//     // var showName = productImage[img1].productName;
-//     // var showNameCounter = productImage[img1].counter;
-//     var showName = productImage[i].productName;
-//     var showNameCounter = productImage[i].y;
-//     var productTotal = showName + " = " +showNameCounter;
-//     productTotal = document.createTextNode(productTotal);
-//     li.appendChild(productTotal);
-//     document.getElementById('displayResults').appendChild(li); // add li to ul
-//   }
-// }
 
 
 // Chart Stuff
@@ -168,7 +118,7 @@ window.onload = function () {
       /*** Change type "column" to "bar", "area", "line" or "pie"***/
             {
              type: "column",
-             dataPoints: productImage
+             dataPoints: productImage // reference to array to plug into canvas chart
             }
           ]
    });
@@ -176,16 +126,10 @@ window.onload = function () {
   chart.render();
 }
 
-function changeSomething() {
+function changeSomething() {  // function when click on resultButton
   // productImage[i].y++;
   chart.render();
-  document.getElementById('chartContainer').setAttribute('class', "");
+  document.getElementById('chartContainer').setAttribute('class', "container"); // get rid of hidden class
 }
-
-
-
-
-
-// Display Result
 
 console.log("end");
