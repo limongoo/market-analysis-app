@@ -91,7 +91,7 @@ function counterClick() {
   // console.log(productImage[img2].productName);
   // console.log(productImage[img3].productName);
   console.log(totalClick);
-  document.getElementById('counterText').innerHTML = "You can view the results after 15 votes. Vote Counter: " + totalClick + " of 15";
+  document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15";
   display(); // calls display function again on click
 }
 
@@ -110,24 +110,16 @@ function resultDisplay() {
   var ul = document.createElement('ul'); // create ul list
   document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
 
-
-
   for (i=0; i < productImage.length; i++) {
-  var li = document.createElement('li'); // create li element
-  // var showName = productImage[img1].productName;
-  // var showNameCounter = productImage[img1].counter;
-
-
-  var showName = productImage[i].productName;
-  var showNameCounter = productImage[i].counter;
-
-
-  var productTotal = showName + " " +showNameCounter;
-
-  productTotal = document.createTextNode(productTotal);
-  li.appendChild(productTotal);
-
-  document.getElementById('displayResults').appendChild(li); // add li to ul
+    var li = document.createElement('li'); // create li element
+    // var showName = productImage[img1].productName;
+    // var showNameCounter = productImage[img1].counter;
+    var showName = productImage[i].productName;
+    var showNameCounter = productImage[i].counter;
+    var productTotal = showName + " = " +showNameCounter;
+    productTotal = document.createTextNode(productTotal);
+    li.appendChild(productTotal);
+    document.getElementById('displayResults').appendChild(li); // add li to ul
   }
 }
 
