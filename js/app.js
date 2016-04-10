@@ -45,18 +45,22 @@ function getRandom() {
 function display () {
   img1 = getRandom();
   imgOne.src = productImage[img1].imgPath;
+  imgOne.dataset.index = img1;
+
 
   img2 = getRandom();
     while (img2 === img1) {
       img2 = getRandom();
     };
   imgTwo.src = productImage[img2].imgPath;
+  imgTwo.dataset.index = img2;
 
   img3 = getRandom();
     while (img3 === img2 || img3 === img1) {
       img3 = getRandom();
     }
   imgThree.src = productImage[img3].imgPath;
+  imgThree.dataset.index = img3;
 
   console.log(productImage[img1]);
   console.log(productImage[img2]);
@@ -81,13 +85,13 @@ var img3 = 0;
 
 // counterClick function
 function counterClick() {
-  productImage[img1].y++;
-  productImage[img2].y++;
-  productImage[img3].y++;
+  var index = event.target.dataset.index;
+  productImage[index].y++;
+
   totalClick++;
 
   if (totalClick === 15) { // if 15 clicks, do remove attribute
-    resultButton.removeAttribute('hidden'); // remove hidden attribute of resultButton if 15 clicks
+    resultButton.setAttribute('class', 'button-primary'); // remove hidden attribute of resultButton if 15 clicks
   }
   // console.log(productImage[img1].productName);
   // console.log(productImage[img2].productName);
@@ -127,30 +131,30 @@ function counterClick() {
 
 // Button for showResults
 var resultButton = document.getElementById('showResults'); // reference to showResults
-resultButton.addEventListener('click', resultDisplay); // event listener, click and run resultDisplay function
+resultButton.addEventListener('click', changeSomething); // event listener, click and run resultDisplay function
 
 
 // resultDisplay function
-function resultDisplay() {
-  var results = document.getElementById('displayResults'); // reference to Id
-  displayResults.removeAttribute('hidden'); // remove hidden
-  console.log('display test');
-
-  var ul = document.createElement('ul'); // create ul list
-  document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
-
-  for (i=0; i < productImage.length; i++) {
-    var li = document.createElement('li'); // create li element
-    // var showName = productImage[img1].productName;
-    // var showNameCounter = productImage[img1].counter;
-    var showName = productImage[i].productName;
-    var showNameCounter = productImage[i].y;
-    var productTotal = showName + " = " +showNameCounter;
-    productTotal = document.createTextNode(productTotal);
-    li.appendChild(productTotal);
-    document.getElementById('displayResults').appendChild(li); // add li to ul
-  }
-}
+// function resultDisplay() {
+//   var results = document.getElementById('displayResults'); // reference to Id
+//   displayResults.removeAttribute('hidden'); // remove hidden
+//   console.log('display test');
+//
+//   var ul = document.createElement('ul'); // create ul list
+//   document.getElementById('displayResults').appendChild(ul); // add ul to div displayResults
+//
+//   for (i=0; i < productImage.length; i++) {
+//     var li = document.createElement('li'); // create li element
+//     // var showName = productImage[img1].productName;
+//     // var showNameCounter = productImage[img1].counter;
+//     var showName = productImage[i].productName;
+//     var showNameCounter = productImage[i].y;
+//     var productTotal = showName + " = " +showNameCounter;
+//     productTotal = document.createTextNode(productTotal);
+//     li.appendChild(productTotal);
+//     document.getElementById('displayResults').appendChild(li); // add li to ul
+//   }
+// }
 
 
 // Chart Stuff
@@ -159,7 +163,7 @@ window.onload = function () {
 
   chart = new CanvasJS.Chart("chartContainer", {
 
-    title: {text: "Clicks Per Photo"},
+    title: {text: "Clicks Per Photo Results"},
     data: [//array of dataSeries
       /*** Change type "column" to "bar", "area", "line" or "pie"***/
             {
@@ -173,8 +177,9 @@ window.onload = function () {
 }
 
 function changeSomething() {
-  productImage[i].y++;
+  // productImage[i].y++;
   chart.render();
+  document.getElementById('chartContainer').setAttribute('class', "");
 }
 
 
