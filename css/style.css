@@ -14,3 +14,7 @@
 #counterText {
   color: #1EAEDB;
 }
+
+.button-primary {
+  transition: 0.5s all ease;
+}
