@@ -12,9 +12,21 @@
 }
 
 #counterText {
-  color: #1EAEDB;
+  color: LimeGreen;
+  font-weight: bold;
 }
 
 .button-primary {
   transition: 0.5s all ease;
+}
+
+body {
+  margin: 5%;
+  border: 12px solid lightgrey;
+  padding: 3%;
+}
+
+h1 {
+  font-weight: bold;
+  color: LimeGreen;
 }
