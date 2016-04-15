@@ -87,16 +87,19 @@ var img3 = 0;
 function counterClick() {
   var index = event.target.dataset.index;
   productImage[index].y++;
-
   totalClick++;
+
+  // Local Storage
+  localStorage.setItem('datadata', JSON.stringify(productImage));
 
   if (totalClick === 15) { // if 15 clicks, change class attribute
     resultButton.setAttribute('class', 'button-primary'); // remove hidden attribute of resultButton if 15 clicks
+    clearButton.setAttribute('class', 'button-primary'); //
   }
-  console.log(productImage[img1].productName);
-  console.log(productImage[img2].productName);
-  console.log(productImage[img3].productName);
-  console.log(totalClick);
+  // console.log(productImage[img1].productName);
+  // console.log(productImage[img2].productName);
+  // console.log(productImage[img3].productName);
+  // console.log(totalClick);
   document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15"; // Show # of 15 text
   display(); // calls display function again on click
 }
@@ -105,6 +108,28 @@ function counterClick() {
 // Button for showResults and event listener
 var resultButton = document.getElementById('showResults'); // reference to showResults
 resultButton.addEventListener('click', changeSomething); // event listener, click and run resultDisplay function
+
+// Clear Result Button
+var clearButton = document.getElementById('resetData');
+clearButton.addEventListener('click', clearSomething);
+
+function clearSomething() {
+  localStorage.clear();
+  for (product of productImage){
+    product.y = 0;
+    console.log(product);
+  }
+  console.log(productImage);
+  chart.render();
+
+}
+
+// Local Storage get item
+var retrieve = localStorage.getItem('datadata');
+if (retrieve != null) {
+  productImage = JSON.parse(retrieve);
+}
+
 
 
 // Chart Stuff
@@ -123,7 +148,8 @@ window.onload = function () {
           ]
    });
 
-  chart.render();
+
+  
 }
 
 function changeSomething() {  // function when click on resultButton
