@@ -76,7 +76,7 @@ imgThree.addEventListener('click', counterClick);
 
 
 
-// Counter variables
+// Counter variables set to 0
 var totalClick = 0;
 var img1 = 0;
 var img2 = 0;
@@ -96,10 +96,6 @@ function counterClick() {
     resultButton.setAttribute('class', 'button-primary'); // remove hidden attribute of resultButton if 15 clicks
     clearButton.setAttribute('class', 'button-primary'); //
   }
-  // console.log(productImage[img1].productName);
-  // console.log(productImage[img2].productName);
-  // console.log(productImage[img3].productName);
-  // console.log(totalClick);
   document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15"; // Show # of 15 text
   display(); // calls display function again on click
 }
@@ -109,27 +105,27 @@ function counterClick() {
 var resultButton = document.getElementById('showResults'); // reference to showResults
 resultButton.addEventListener('click', changeSomething); // event listener, click and run resultDisplay function
 
+
 // Clear Result Button
-var clearButton = document.getElementById('resetData');
-clearButton.addEventListener('click', clearSomething);
+var clearButton = document.getElementById('resetData');  // reference to resetData
+clearButton.addEventListener('click', clearSomething);  // event listener, click and run clearSomething function
 
+
+// ClearSomething function
 function clearSomething() {
-  localStorage.clear();
-  for (product of productImage){
-    product.y = 0;
-    console.log(product);
+  localStorage.clear();  // clear local storage
+  for (product of productImage){  // for loop to go through productImage and set y = 0
+    product.y = 0;  // set store y value to 0
   }
-  console.log(productImage);
-  chart.render();
+  chart.render();  // render chart
+};
 
-}
 
 // Local Storage get item
-var retrieve = localStorage.getItem('datadata');
-if (retrieve != null) {
-  productImage = JSON.parse(retrieve);
-}
-
+var retrieve = localStorage.getItem('datadata');  // get datadata
+if (retrieve != null) {  // if false. if retrieve not null, parse retrieve
+  productImage = JSON.parse(retrieve);  // parse data
+};
 
 
 // Chart Stuff
@@ -147,14 +143,12 @@ window.onload = function () {
             }
           ]
    });
-
-
-  
 }
 
+
+// changeSomething function
 function changeSomething() {  // function when click on resultButton
-  // productImage[i].y++;
-  chart.render();
+  chart.render();  // render chart
   document.getElementById('chartContainer').setAttribute('class', "container"); // get rid of hidden class
 }
 
