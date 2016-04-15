@@ -132,4 +132,5 @@ function changeSomething() {  // function when click on resultButton
   document.getElementById('chartContainer').setAttribute('class', "container"); // get rid of hidden class
 }
 
+
 console.log("end");
