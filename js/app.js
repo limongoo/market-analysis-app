@@ -94,7 +94,7 @@ function counterClick() {
 
   if (totalClick === 15) { // if 15 clicks, change class attribute
     resultButton.setAttribute('class', 'button-primary'); // remove hidden attribute of resultButton if 15 clicks
-    clearButton.setAttribute('class', 'button-primary'); //
+    clearButton.setAttribute('class', 'button-primary'); // remove hidden attribute of clearButton if 15 clicks
   }
   document.getElementById('counterText').innerHTML = "Vote Counter: " + totalClick + " of 15"; // Show # of 15 text
   display(); // calls display function again on click
