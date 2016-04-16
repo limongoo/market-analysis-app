@@ -1,0 +1,46 @@
+.center {
+  text-align: center;
+}
+
+#chartContainer {
+  height: 300px;
+  width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#counterText {
+  color: LimeGreen;
+  font-weight: bold;
+}
+
+.button-primary {
+  transition: 0.5s all ease;
+}
+
+body {
+  margin: 3%;
+  border: 12px solid lightgrey;
+  padding: 3%;
+}
+
+h1 {
+  font-weight: bold;
+  color: LimeGreen;
+}
+
+.up {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.up:hover {
+  -webkit-transform: translateY(-20px);
+  -moz-transform: translateY(-20px);
+  -ms-transform: translateY(-20px);
+  -o-transform: translateY(-20px);
+  transform: translateY(-20px);
+}
